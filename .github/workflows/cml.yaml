@@ -1,0 +1,25 @@
+name: mlops-ex6
+
+on:
+  push:
+
+jobs:
+  run:
+    runs-on: windows-latest  # Use Windows runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Adjust the version as needed
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run training script inside Docker
+        run: |
+          docker build -t mlops-train .
+          docker run mlops-train
