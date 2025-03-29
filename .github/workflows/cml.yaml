@@ -1,0 +1,19 @@
+name: mlops-ex6
+
+on:
+  push:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest  # Use Linux runner for Docker compatibility
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Pull Existing Docker Image (exp_5)
+        run: |
+          docker pull vaisnave/exp_5
+
+      - name: Run Docker Container
+        run: |
+          docker run --rm --name exp_5 vaisnave/exp_5
