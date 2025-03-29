@@ -5,15 +5,19 @@ on:
 
 jobs:
   run:
-    runs-on: ubuntu-latest  # Use Linux runner for Docker compatibility
+    runs-on: windows-latest  # ✅ Windows runner
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Pull Existing Docker Image (exp_5)
+      - name: Install Docker on Windows
+        run: |
+          choco install docker-cli
+
+      - name: Pull Existing Docker Image
         run: |
           docker pull vaisnave/exp_5
 
       - name: Run Docker Container
         run: |
-          docker run --rm --name exp_5 vaisnave/exp_5
+          docker run -d --name exp_5 -p 8000:8000 vaisnave/exp_5
