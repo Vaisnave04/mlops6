@@ -5,14 +5,10 @@ on:
 
 jobs:
   run:
-    runs-on: windows-latest  # Use Windows runner instead of Ubuntu
+    runs-on: ubuntu-latest  # Switch from Windows to Ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install Docker on Windows Runner
-        run: |
-          choco install docker-cli
 
       - name: Pull Existing Docker Image
         run: |
